@@ -1,0 +1,41 @@
+
+syntax = "proto3";
+
+package grpc_auth;
+
+option go_package = "./pkg";
+
+// import "proto/user.proto";
+
+
+message CreateuserRequest{
+    string name = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message SignUpResponse{
+    string name = 1;
+    string username = 2;
+}
+
+message LoginRequest{
+    string password = 1;
+    string email = 2;
+}
+
+message LoginResponse{
+    string authToken = 2;
+}
+message SignUpRequest{
+    string password = 1;
+    string username = 2;
+    string email = 3;
+}
+
+
+service AuthService {
+    rpc Login(LoginRequest) returns ( LoginResponse) {}
+    rpc SignUp(SignUpRequest) returns ( SignUpResponse) {}
+  }
+  

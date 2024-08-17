@@ -1,0 +1,35 @@
+
+
+syntax = "proto3";
+
+package grpc_auth;
+option go_package = "./pkg";
+
+
+message User {
+    string name = 1;
+    string hashedPassword = 2;
+    string email = 3;
+}
+
+message UpdateUserDetailsRequest {
+  string name = 1;
+}
+
+
+
+message UserList {
+    repeated User users = 1;
+  }
+
+message Empty {}
+
+
+service UserService {
+        rpc GetUserDetails(Empty) returns (User);
+        rpc GetAllUsers(Empty) returns (UserList);
+        rpc UpdateUserDetails(UpdateUserDetailsRequest) returns (User);
+        rpc DeleteAccount(Empty) returns (Empty);
+
+  }
+  // 
